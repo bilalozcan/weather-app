@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "969397381353",
+    "project_id": "weathermobil",
+    "storage_bucket": "weathermobil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969397381353:android:15e3e7d4a9c7c7cd65a878",
+        "android_client_info": {
+          "package_name": "com.bilalozcan.weather_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969397381353-j5tpei4e443sgf9bcqaulap1og8e0709.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDi2KJmpl3p40GPpCGdqSrybc5wh7Yq0P4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "969397381353-j5tpei4e443sgf9bcqaulap1og8e0709.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
