@@ -6,7 +6,7 @@ import 'package:weather_app/model/weather_model.dart';
 import 'package:weather_app/service/locale_database_service.dart';
 
 class WeatherService {
-  String APIKey = 'P9WhAzaQcfj2mLGihGTIRFhH6GgrOzBA';
+  String APIKey = 'UG48D5dgcGjEd6Sbmj2Nc0avD7ZLTmX2';
   LocaleDatabaseService databaseHelper = LocaleDatabaseService();
   String cityName;
   String cityKey;
