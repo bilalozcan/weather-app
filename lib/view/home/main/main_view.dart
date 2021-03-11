@@ -65,17 +65,20 @@ class _MainViewState extends BaseState<MainView> {
                   ),
                 )
               : Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
                       width: double.infinity,
                       height: dynamicHeight(0.15),
                       child: Column(
                         children: [
-                          Text(context
-                              .watch<MainViewModel>()
-                              .weatherList
-                              .first['city'], style: TextStyle(color: Colors.white, fontSize: 24),),
+                          Text(
+                            context
+                                .watch<MainViewModel>()
+                                .weatherList
+                                .first['city'],
+                            style: TextStyle(color: Colors.white, fontSize: 24),
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -112,98 +115,89 @@ class _MainViewState extends BaseState<MainView> {
                               .watch<MainViewModel>()
                               .weatherList
                               .map((weather) {
-                        return Container(
-                          width: dynamicWidth(1),
-                          height: dynamicHeight(0.20),
-                          child: Column(
-                            children: [
-                              Divider(
-                                thickness: 2,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  DateTime.now().weekday ==
-                                          DateTime.parse(weather['date'])
-                                              .weekday
-                                      ? Text(
-                                          'Bugün',
-                                          style: TextStyle(color: Colors.white),
-                                        )
-                                      : DateTime.now().weekday - 1 ==
-                                              DateTime.parse(weather['date'])
-                                                  .weekday
-                                          ? Text(
-                                              'Dün',
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            )
-                                          : Text(
-                                              weekdayMap[DateTime.parse(
-                                                      weather['date'])
-                                                  .weekday],
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    '${DateTime.parse(weather['date']).day}/${DateTime.parse(weather['date']).month}',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                '${weather['maxTemp'].toInt()}°/${weather['minTemp'].toInt()}°',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Image.asset(
-                                          'assets/icons/icon-${weather['dayIcon']}.png'),
-                                      Container(
-                                        width: 120,
-                                        child: Center(
-                                          child: Text(
-                                            weather['dayIconPhrase'],
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      Image.asset(
-                                          'assets/icons/icon-${weather['nightIcon']}.png'),
-                                      Container(
-                                        width: 120,
-                                        child: Center(
-                                          child: Text(
-                                            weather['nightIconPhrase'],
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        );
+                        return buildContainer(weather);
                       }).toList()),
                     )
                   ],
                 )),
+    );
+  }
+
+  Container buildContainer(Map<String, dynamic> weather) {
+    return Container(
+      width: dynamicWidth(1),
+      height: dynamicHeight(0.20),
+      child: Column(
+        children: [
+          Divider(
+            thickness: 2,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              DateTime.now().weekday == DateTime.parse(weather['date']).weekday
+                  ? Text(
+                      'Bugün',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  : DateTime.now().weekday - 1 ==
+                          DateTime.parse(weather['date']).weekday
+                      ? Text(
+                          'Dün',
+                          style: TextStyle(color: Colors.white),
+                        )
+                      : Text(
+                          weekdayMap[DateTime.parse(weather['date']).weekday],
+                          style: TextStyle(color: Colors.white),
+                        ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                '${DateTime.parse(weather['date']).day}/${DateTime.parse(weather['date']).month}',
+                style: TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+          Text(
+            '${weather['maxTemp'].toInt()}°/${weather['minTemp'].toInt()}°',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                children: [
+                  Image.asset('assets/icons/icon-${weather['dayIcon']}.png'),
+                  Container(
+                    width: 120,
+                    child: Center(
+                      child: Text(
+                        weather['dayIconPhrase'],
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Image.asset('assets/icons/icon-${weather['nightIcon']}.png'),
+                  Container(
+                    width: 120,
+                    child: Center(
+                      child: Text(
+                        weather['nightIconPhrase'],
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
